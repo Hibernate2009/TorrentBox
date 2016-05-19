@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtilsBean;
 
 import com.bssys.form.DeleteForm;
-import com.bssys.form.ManagerForm;
 import com.bssys.model.TorrentModel;
 import com.bssys.service.Torrent;
 import com.bssys.service.TorrentService;
