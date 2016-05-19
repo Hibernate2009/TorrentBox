@@ -1,0 +1,45 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+	<listener>
+		<listener-class>com.bssys.listener.TorrentAppListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>UploadTorrentServlet</servlet-name>
+		<display-name>UploadTorrentServlet</display-name>
+		<description></description>
+		<servlet-class>com.bssys.servlet.UploadTorrentServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DeleteTorrentServlet</servlet-name>
+		<display-name>DeleteTorrentServlet</display-name>
+		<description></description>
+		<servlet-class>com.bssys.servlet.DeleteTorrentServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RefreshTorrentServlet</servlet-name>
+		<display-name>RefreshTorrentServlet</display-name>
+		<description></description>
+		<servlet-class>com.bssys.servlet.RefreshTorrentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadTorrentServlet</servlet-name>
+		<url-pattern>/UploadTorrentServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteTorrentServlet</servlet-name>
+		<url-pattern>/DeleteTorrentServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RefreshTorrentServlet</servlet-name>
+		<url-pattern>/RefreshTorrentServlet</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
