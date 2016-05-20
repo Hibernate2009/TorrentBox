@@ -38,7 +38,7 @@ public class Torrent {
 			public void update(Observable observable, Object data) {
 				Client client = (Client) observable;
 				float progress = client.getTorrent().getCompletion();
-				if (progress==100){
+				if (client.getTorrent().isComplete()){
 					torrentBO.setStatus("success");
 					stop(false);
 				}
