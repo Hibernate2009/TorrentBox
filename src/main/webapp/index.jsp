@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@
 						<td width="50%"><c:out value="${torrent.fileName}" /></td>
 						<td width="40%">
 							<div class="progress" style="margin-bottom: 0px;">
-								<div class="progress-bar" role="progressbar" style="min-width: 2em;" aria-valuenow="<c:out value="${torrent.progress}" />" aria-valuemin="0" aria-valuemax="100" style="width: <c:out value="${torrent.progress}" />%;"><c:out value="${torrent.progress}" />%</div>
+								<div class="progress-bar" role="progressbar"  aria-valuenow="<c:out value="${torrent.progress}" />" aria-valuemin="0" aria-valuemax="100" style="width: <c:out value="${torrent.progress}" />%;"><c:out value="${torrent.progress}" />%</div>
 							</div>
 						</td>
 						<td width="10%">

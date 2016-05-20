@@ -60,8 +60,7 @@ public class UploadTorrentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+
 		HttpSession session = request.getSession();
 
 		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
@@ -73,47 +72,51 @@ public class UploadTorrentServlet extends HttpServlet {
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		try {
 			List<FileItem> fields = upload.parseRequest(request);
-			
+
 			Iterator<FileItem> it = fields.iterator();
 			if (!it.hasNext()) {
 				return;
 			}
-			
+
 			while (it.hasNext()) {
-				
+
 				FileItem fileItem = it.next();
 				boolean isFormField = fileItem.isFormField();
 				if (isFormField) {
 					fileItem.getFieldName();
 					fileItem.getString();
 				} else {
-					
+
 					InputStream inputStream = null;
-					
-					try{
+
+					try {
 						inputStream = fileItem.getInputStream();
 						byte[] torrentContent = IOUtils.toByteArray(inputStream);
-						String fileName = fileItem.getName();
-						List<Torrent> torrentList = TorrentService.getInstance().getTorrentList();
-						boolean flag= false;
-						for(Torrent torrent: torrentList){
-							if (fileName.equals(torrent.getTorrentBO().getFileName())){
-								flag=true;
+						if (torrentContent != null && torrentContent.length > 0) {
+
+							String fileName = fileItem.getName();
+							List<Torrent> torrentList = TorrentService.getInstance().getTorrentList();
+							boolean flag = false;
+							for (Torrent torrent : torrentList) {
+								if (fileName.equals(torrent.getTorrentBO().getFileName())) {
+									flag = true;
+								}
+							}
+							if (!flag) {
+								Torrent torrent = new Torrent(torrentContent, fileName,
+										new File("D:/torrent/to/output/directory"));
+								TorrentService.getInstance().addTorrent(torrent);
 							}
 						}
-						if (!flag){
-							Torrent torrent = new Torrent(torrentContent, fileName, new File("D:/torrent/to/output/directory"));
-							TorrentService.getInstance().addTorrent(torrent);
-						}
-						
+
 					} catch (NoSuchAlgorithmException e) {
 						e.printStackTrace();
-					}finally{
+					} finally {
 						IOUtils.closeQuietly(inputStream);
 					}
 				}
 			}
-			
+
 			TorrentModel torrentModel = TorrentService.getInstance().getTorrentModel();
 			session.setAttribute("torrentModel", torrentModel);
 			response.sendRedirect("index.jsp");
@@ -121,7 +124,6 @@ public class UploadTorrentServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
 	}
 
 	/**

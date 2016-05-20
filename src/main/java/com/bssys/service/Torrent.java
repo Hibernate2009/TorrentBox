@@ -25,7 +25,7 @@ public class Torrent {
 		
 		torrentBO = new TorrentBO();
 		torrentBO.setTorrentId(UUID.randomUUID().toString());
-		torrentBO.setProgress(0);
+		torrentBO.setProgress(client.getTorrent().getCompletion());
 		torrentBO.setStatus("info");
 		torrentBO.setFileName(fileName);
 	}
@@ -40,6 +40,7 @@ public class Torrent {
 				float progress = client.getTorrent().getCompletion();
 				if (progress==100){
 					torrentBO.setStatus("success");
+					stop(false);
 				}
 				torrentBO.setProgress(progress);
 			}
